@@ -62,7 +62,7 @@ namespace SinzkPeek
                             if (match2.Success)
                             {
                                 var fn = match2.Value.Substring(1);
-                                if (File.Exists("down/" + date + "/" + fn)) continue;
+                                if (File.Exists("down/" + date + "/" + fn) && new FileInfo("down/" + date + "/" + fn).Length > 0) continue;
                                 Console.Write("Downloading " + fn + " ... ");
                                 try
                                 {
