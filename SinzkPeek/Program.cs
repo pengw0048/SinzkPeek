@@ -18,10 +18,15 @@ namespace SinzkPeek
             var oldlogs = new HashSet<string>();
             if (File.Exists("old.log"))
             {
+                string last = "";
                 Console.WriteLine("Continue from last session.");
                 using (var sr = new StreamReader("old.log"))
                     while (!sr.EndOfStream)
-                        oldlogs.Add(sr.ReadLine());
+                    {
+                        last = sr.ReadLine();
+                        oldlogs.Add(last);
+                    }
+                if (args.Length > 0) oldlogs.Remove(last);
             }
 
             Console.WriteLine("Downloading list of logs...");
